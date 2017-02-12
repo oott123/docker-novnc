@@ -1,2 +1,2 @@
-#!/usr/bin/execlineb -P
+#!/usr/bin/with-contenv /usr/bin/execlineb -P
 /app/src/websockify/run 9001 --wrap-mode=respawn -- /usr/bin/vncserver :1 -geometry $VNC_GEOMETRY -depth 24

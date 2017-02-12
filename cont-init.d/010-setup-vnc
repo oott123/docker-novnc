@@ -1,4 +1,9 @@
-#!/bin/bash
+#!/usr/bin/with-contenv /bin/bash
+
+set -eo pipefail
+
+[[ $DEBUG == true ]] && set -x
+
 echo -e "$VNC_PASSWD\n$VNC_PASSWD\n\n" | sudo -u user vncpasswd
 if [ ! -d /etc/vnc ]; then
     mkdir /etc/vnc
