@@ -33,12 +33,17 @@ RUN apt-get update && apt-get upgrade -y && \
         git \
         ca-certificates wget curl \
         sudo nginx\
-        tightvncserver xorg openbox && \
+        tightvncserver xorg openbox \
+        build-essential && \
     locale-gen en_US.UTF-8 && \
-    apt-get clean && \
     mkdir -p /app/src && \
     git clone --depth=1 https://github.com/novnc/noVNC.git /app/src/novnc && \
-    git clone --depth=1 https://github.com/novnc/websockify.git /app/src/websockify
+    git clone --depth=1 https://github.com/novnc/websockify.git /app/src/websockify && \
+    cd /app/src/websockify && \
+    make && \
+    apt-get remove -y build-essential && \
+    apt-get autoremove -y && \
+    apt-get clean
 
 # copy files
 COPY /etc/nginx.conf /etc/nginx/nginx.conf
