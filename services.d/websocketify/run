@@ -1,2 +1,3 @@
 #!/usr/bin/with-contenv bash
-sudo -Hu user /app/src/websockify/run 9001 --wrap-mode=respawn -- /usr/bin/vncserver :1 -geometry $VNC_GEOMETRY -depth 24
+# You should ignore vncserver exit because it will exit after server started
+sudo -Hu user /app/src/websockify/run 9001 --wrap-mode=ignore -- /usr/bin/vncserver :1 -geometry $VNC_GEOMETRY -depth 24
