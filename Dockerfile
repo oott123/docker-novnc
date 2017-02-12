@@ -33,8 +33,12 @@ RUN apt-get update && apt-get upgrade -y && \
         git \
         ca-certificates wget curl \
         sudo nginx\
-        tightvncserver xorg openbox \
+        xorg openbox \
         build-essential && \
+    wget https://bintray.com/artifact/download/tigervnc/stable/ubuntu-16.04LTS/amd64/tigervncserver_1.7.1-1ubuntu1_amd64.deb -O /tmp/tigervnc.deb && \
+    dpkg -i /tmp/tigervnc.deb && \
+    apt-get -f install && \
+    rm -f /tmp/tigervnc.deb && \
     locale-gen en_US.UTF-8 && \
     mkdir -p /app/src && \
     git clone --depth=1 https://github.com/novnc/noVNC.git /app/src/novnc && \
