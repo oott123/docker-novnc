@@ -1,7 +1,7 @@
 # 端口规划
 # 9000 - nginx
 # 9001 - websocketify
-# tigervnc 被劫持到高位去了
+# 5901 - tigervnc
 
 # based on ubuntu 16.04 LTS
 FROM ubuntu:xenial
