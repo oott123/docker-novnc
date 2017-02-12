@@ -34,7 +34,7 @@ RUN apt-get update && apt-get upgrade -y && \
         ca-certificates wget curl \
         sudo nginx\
         tightvncserver xorg openbox && \
-    localegen en_US.UTF-8 && \
+    locale-gen en_US.UTF-8 && \
     apt-get clean && \
     mkdir -p /app/src && \
     git clone --depth=1 https://github.com/novnc/noVNC.git /app/src/novnc && \
