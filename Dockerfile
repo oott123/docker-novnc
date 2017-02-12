@@ -34,8 +34,8 @@ RUN apt-get update && apt-get upgrade -y && \
         tightvncserver xorg openbox && \
     apt-get clean && \
     mkdir -p /app/src && \
-    git clone https://github.com/novnc/noVNC.git /app/src/novnc && \
-    git clone https://github.com/novnc/websockify.git /app/src/websockify
+    git clone --depth=1 https://github.com/novnc/noVNC.git /app/src/novnc && \
+    git clone --depth=1 https://github.com/novnc/websockify.git /app/src/websockify
 
 # copy files
 COPY /etc/nginx.conf /etc/nginx/nginx.conf
