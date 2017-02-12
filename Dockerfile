@@ -19,7 +19,9 @@ RUN groupadd -r user && useradd -r -m -g user user
 
 # 使用 s6 init
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.18.1.5/s6-overlay-amd64.tar.gz /tmp/
-RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
+RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
+# workaround for https://github.com/just-containers/s6-overlay/issues/158
+    ln -s /init /init.entrypoint
 ADD fix-attrs.d /etc/fix-attrs.d
 ADD cont-init.d /etc/cont-init.d
 ADD services.d /etc/services.d
@@ -44,5 +46,5 @@ COPY entrypoint.sh /sbin/entrypoint.sh
 
 EXPOSE 9000
 
-ENTRYPOINT ["/init"]
+ENTRYPOINT ["/init.entrypoint"]
 CMD ["start"]
