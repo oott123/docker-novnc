@@ -1,0 +1,2 @@
+/app true root:root 0644 0755
+/sbin true root:root 0600 0700

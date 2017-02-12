@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "$VNC_PASSWORD\n$VNC_PASSWORD\n\n" | sudo -u user vncpasswd
+if [ ! -d /etc/vnc ]; then
+    mkdir /etc/vnc
+fi
+echo 'openbox-session' > /etc/vnc/xstartup
