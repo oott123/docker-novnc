@@ -33,8 +33,7 @@ RUN apt-get update && apt-get upgrade -y && \
         git \
         ca-certificates wget curl \
         sudo nginx\
-        xorg openbox \
-        build-essential && \
+        xorg openbox && \
     wget https://bintray.com/artifact/download/tigervnc/stable/ubuntu-16.04LTS/amd64/tigervncserver_1.7.1-1ubuntu1_amd64.deb -O /tmp/tigervnc.deb && \
     (dpkg -i /tmp/tigervnc.deb || apt-get -f -y install) && \
     rm -f /tmp/tigervnc.deb && \
@@ -43,8 +42,6 @@ RUN apt-get update && apt-get upgrade -y && \
     git clone --depth=1 https://github.com/novnc/noVNC.git /app/src/novnc && \
     git clone --depth=1 https://github.com/novnc/websockify.git /app/src/websockify && \
     cd /app/src/websockify && \
-    make && \
-    apt-get remove -y build-essential && \
     apt-get autoremove -y && \
     apt-get clean
 

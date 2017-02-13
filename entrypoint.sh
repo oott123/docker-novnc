@@ -17,7 +17,7 @@ case ${1} in
     sleep 2
     /bin/s6-svc -wu -T 5000 -u /var/run/s6/services/nginx
     sleep 2
-    sudo --preserve-env -u user /app/vncmain.sh "$@"
+    sudo --preserve-env -Hu user /app/vncmain.sh "$@"
     ;;
   *)
     exec "$@"
