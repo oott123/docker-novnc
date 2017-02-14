@@ -7,7 +7,7 @@ tigervnc, websokify, novnc and Nginx with s6-overlay in a docker image.
 ## Environment variables
 
 * **`VNC_GEOMETRY`** - VNC geometry; default: `800x600`
-* **`VNC_PASSWD`** - VNC password, no more than 8 chars; default: `MAX8chars`
+* **`VNC_PASSWD`** - VNC password, no more than 8 chars; default: `MAX8char`
 * **`USER_PASSWD`** - user `user` password. If you specify it, it will change the password for user `user` and add it to sudoers. NOTE: This password can get by programs so it's not safe. default: _(blank)_
 
 ## Ports

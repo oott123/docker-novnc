@@ -11,7 +11,7 @@ ENV LANG=en_US.UTF-8 \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2 \
     S6_CMD_ARG0=/sbin/entrypoint.sh \
     VNC_GEOMETRY=800x600 \
-    VNC_PASSWD=MAX8chars \
+    VNC_PASSWD=MAX8char \
     USER_PASSWD='' \
     DEBIAN_FRONTEND=noninteractive
 
