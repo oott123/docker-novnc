@@ -12,7 +12,7 @@ tigervnc, websokify, novnc and Nginx with s6-overlay in a docker image.
 
 ## Ports
 
-* **5901** - tigervnc
+* **5911** - tigervnc
 * **9000** - Nginx
 * **9001** - websockify
 
