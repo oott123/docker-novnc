@@ -16,7 +16,7 @@ ENV LANG=en_US.UTF-8 \
     DEBIAN_FRONTEND=noninteractive
 
 # 首先加用户，防止 uid/gid 不稳定
-RUN groupadd -r user && useradd -r -m -g user user
+RUN groupadd user && useradd -m -g user user
 
 # download files out of container
 ADD https://github.com/just-containers/s6-overlay/releases/download/v1.18.1.5/s6-overlay-amd64.tar.gz /tmp/s6-overlay-amd64.tar.gz
