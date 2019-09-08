@@ -28,7 +28,7 @@ RUN groupadd user && useradd -m -g user user && \
     # workaround for https://github.com/just-containers/s6-overlay/issues/158
     ln -s /init /init.entrypoint && \
     # tigervnc
-    wget -O /tmp/tigervnc.deb https://bintray.com/artifact/download/tigervnc/stable/ubuntu-16.04LTS/amd64/tigervncserver_1.7.1-1ubuntu1_amd64.deb && \
+    wget -O /tmp/tigervnc.deb https://bintray.com/artifact/download/tigervnc/stable/ubuntu-16.04LTS/amd64/tigervncserver_1.9.0-1ubuntu1_amd64.deb && \
     (dpkg -i /tmp/tigervnc.deb || apt-get -f -y install) && \
     locale-gen en_US.UTF-8 && \
     # novnc
