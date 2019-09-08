@@ -42,7 +42,7 @@ RUN groupadd user && useradd -m -g user user && \
 # copy files
 COPY ./docker-root /
 
-EXPOSE 9000
+EXPOSE 9000/tcp 9001/tcp 5901/tcp
 
 ENTRYPOINT ["/init.entrypoint"]
 CMD ["start"]
