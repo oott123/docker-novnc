@@ -24,7 +24,7 @@ RUN groupadd user && useradd -m -g user user && \
         ca-certificates wget curl locales \
         sudo nginx \
         xorg openbox && \
-    wget -O - https://github.com/just-containers/s6-overlay/releases/download/v1.18.1.5/s6-overlay-amd64.tar.gz | tar -xzv && \
+    wget -O - https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-amd64.tar.gz | tar -xzv && \
     # workaround for https://github.com/just-containers/s6-overlay/issues/158
     ln -s /init /init.entrypoint && \
     # tigervnc
