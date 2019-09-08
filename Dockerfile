@@ -16,23 +16,19 @@ ENV LANG=en_US.UTF-8 \
     DEBIAN_FRONTEND=noninteractive
 
 # 首先加用户，防止 uid/gid 不稳定
-RUN groupadd user && useradd -m -g user user
-
-# download files out of container
-ADD https://github.com/just-containers/s6-overlay/releases/download/v1.18.1.5/s6-overlay-amd64.tar.gz /tmp/s6-overlay-amd64.tar.gz
-ADD https://bintray.com/artifact/download/tigervnc/stable/ubuntu-16.04LTS/amd64/tigervncserver_1.7.1-1ubuntu1_amd64.deb /tmp/tigervnc.deb
-
-# 安装依赖和代码
-RUN apt-get update && apt-get upgrade -y && \
+RUN groupadd user && useradd -m -g user user && \
+    # 安装依赖和代码
+    apt-get update && apt-get upgrade -y && \
     apt-get install -y \
         python git \
         ca-certificates wget curl locales \
         sudo nginx \
         xorg openbox && \
-    tar -xvf /tmp/s6-overlay-amd64.tar.gz && \
+    wget -O - https://github.com/just-containers/s6-overlay/releases/download/v1.18.1.5/s6-overlay-amd64.tar.gz | tar -xvf /tmp/s6-overlay-amd64.tar.gz && \
     # workaround for https://github.com/just-containers/s6-overlay/issues/158
     ln -s /init /init.entrypoint && \
     # tigervnc
+    wget -O /tmp/tigervnc.deb https://bintray.com/artifact/download/tigervnc/stable/ubuntu-16.04LTS/amd64/tigervncserver_1.7.1-1ubuntu1_amd64.deb && \
     (dpkg -i /tmp/tigervnc.deb || apt-get -f -y install) && \
     locale-gen en_US.UTF-8 && \
     # novnc
@@ -40,7 +36,8 @@ RUN apt-get update && apt-get upgrade -y && \
     git clone --depth=1 https://github.com/novnc/noVNC.git /app/src/novnc && \
     git clone --depth=1 https://github.com/novnc/websockify.git /app/src/websockify && \
     apt-get autoremove -y && \
-    apt-get clean
+    apt-get clean && \
+    rm -fr /tmp/* /app/src/novnc/.git /app/src/websockify/.git
 
 # copy files
 COPY ./docker-root /
