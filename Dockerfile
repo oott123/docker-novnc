@@ -21,7 +21,7 @@ RUN groupadd user && useradd -m -g user user && \
     apt-get update && apt-get upgrade -y && \
     apt-get install -y \
         python git \
-        ca-certificates wget curl locales \
+        ca-certificates wget locales \
         nginx \
         xorg openbox && \
     wget -O - https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-amd64.tar.gz | tar -xzv && \
@@ -35,7 +35,7 @@ RUN groupadd user && useradd -m -g user user && \
     mkdir -p /app/src && \
     git clone --depth=1 https://github.com/novnc/noVNC.git /app/src/novnc && \
     git clone --depth=1 https://github.com/novnc/websockify.git /app/src/websockify && \
-    apt-get purge -y git && \
+    apt-get purge -y git wget && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -fr /tmp/* /app/src/novnc/.git /app/src/websockify/.git
