@@ -20,7 +20,7 @@ RUN groupadd user && useradd -m -g user user && \
     # 安装依赖和代码
     apt-get update && apt-get upgrade -y && \
     apt-get install -y \
-        python git \
+        git \
         ca-certificates wget locales \
         nginx \
         xorg openbox && \
