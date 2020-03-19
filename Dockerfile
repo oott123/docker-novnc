@@ -3,8 +3,9 @@
 # 9001 - websocketify
 # 5901 - tigervnc
 
-# based on ubuntu 16.04 LTS
-FROM ubuntu:xenial
+# based on ubuntu 18.04 LTS
+FROM ubuntu:18.04
+
 # 各种环境变量
 ENV LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8 \
@@ -22,14 +23,16 @@ RUN groupadd user && useradd -m -g user user && \
     apt-get install -y \
         git \
         ca-certificates wget locales \
-        nginx \
-        xorg openbox && \
+        nginx sudo \
+        xorg openbox python-numpy rxvt-unicode && \
     wget -O - https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-amd64.tar.gz | tar -xzv && \
     # workaround for https://github.com/just-containers/s6-overlay/issues/158
     ln -s /init /init.entrypoint && \
     # tigervnc
-    wget -O /tmp/tigervnc.deb https://bintray.com/artifact/download/tigervnc/stable/ubuntu-16.04LTS/amd64/tigervncserver_1.9.0-1ubuntu1_amd64.deb && \
-    (dpkg -i /tmp/tigervnc.deb || apt-get -f -y install) && \
+    wget -O /tmp/tigervnc.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=tigervnc-1.10.1.x86_64.tar.gz && \
+    tar xzf /tmp/tigervnc.tar.gz -C /tmp && \
+    chown root:root -R /tmp/tigervnc-1.10.1.x86_64 && \
+    tar c -C /tmp/tigervnc-1.10.1.x86_64 usr | tar x -C / && \
     locale-gen en_US.UTF-8 && \
     # novnc
     mkdir -p /app/src && \
@@ -38,7 +41,7 @@ RUN groupadd user && useradd -m -g user user && \
     apt-get purge -y git wget && \
     apt-get autoremove -y && \
     apt-get clean && \
-    rm -fr /tmp/* /app/src/novnc/.git /app/src/websockify/.git
+    rm -fr /tmp/* /app/src/novnc/.git /app/src/websockify/.git /var/lib/apt/lists
 
 # copy files
 COPY ./docker-root /
