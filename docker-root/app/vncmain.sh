@@ -1,3 +1,3 @@
 #!/bin/bash
-echo 'This is a dummy foreground process'
+echo 'VNCMain Started'
 tail -n0 -f $0

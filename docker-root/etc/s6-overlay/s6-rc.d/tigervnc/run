@@ -1,0 +1,2 @@
+#!/command/with-contenv bash
+sudo -Hu user /usr/bin/Xvnc :11 -geometry $VNC_GEOMETRY -depth 24
